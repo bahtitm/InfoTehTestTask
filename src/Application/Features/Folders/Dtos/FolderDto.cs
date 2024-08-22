@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Features.Folders.Dtos
+﻿namespace Application.Features.Folders.Dtos
 {
-    internal class FolderDto
+   public class FolderDto
     {
+        public uint Id { get; set; }
+        public uint ParentId { get; set; }
+        public string? Name { get; set; }
     }
 }

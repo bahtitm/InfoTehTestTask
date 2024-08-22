@@ -4,6 +4,6 @@
     {
         public uint ParentId { get; set; }
         public string? Name { get; set; }
-        public virtual IEnumerable<File>? Files { get; set; }
+        public virtual IEnumerable<FolderFile>? FolderFiles { get; set; }
     }
 }

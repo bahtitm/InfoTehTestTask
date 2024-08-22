@@ -2,7 +2,7 @@
 
 namespace Application.Features.Folders.Queries.GetDetail
 {
-    internal class GetDetailFolderQueryHandler : IRequestHandler<GetDetailFolderQuery, FolderDto>
+    public class GetDetailFolderQueryHandler : IRequestHandler<GetDetailFolderQuery, FolderDto>
     {
         private readonly IApplicationDbContext dbContext;
         private readonly IMapper mapper;
