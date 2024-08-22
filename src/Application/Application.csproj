@@ -16,5 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\FileExtensions\" />
+    <Folder Include="Features\Files\" />
+  </ItemGroup>
 
 </Project>
