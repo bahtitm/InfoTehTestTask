@@ -1,11 +1,9 @@
 using Application;
 using InfoTehTestTask.Data;
 using Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 //Add services to the container.
@@ -52,9 +50,13 @@ builder.Services.AddSwaggerGen(swagger =>
     );
 });
 builder.Services.AddAuthorization();
-
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "../ClientApp/dist";
+});
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -68,7 +70,10 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.MapControllers();
-
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ClientApp";
+});
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DatabaseMigrator>();
