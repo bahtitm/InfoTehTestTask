@@ -14,7 +14,7 @@ builder.Services.Configure<KestrelServerOptions>(config.GetSection("Kestrel"));
 builder.Services.AddApplicationCore();
 builder.Services.AddPersistence(config);
 builder.Services.AddScoped<DatabaseMigrator>();
-
+builder.Services.AddCors();
 
 
 builder.Services.AddControllers();
@@ -50,10 +50,10 @@ builder.Services.AddSwaggerGen(swagger =>
     );
 });
 builder.Services.AddAuthorization();
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "../ClientApp/dist";
-});
+//builder.Services.AddSpaStaticFiles(configuration =>
+//{
+//    configuration.RootPath = "../ClientApp/dist";
+//});
 
 var app = builder.Build();
 
@@ -65,15 +65,25 @@ if (app.Environment.IsDevelopment())
 }
 app.UseSwagger();
 app.UseSwaggerUI();
-
+app.UseCors(x => x
+       .AllowAnyOrigin()
+       .AllowAnyMethod()
+       .AllowAnyHeader());
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 
 app.UseAuthorization();
 app.MapControllers();
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "ClientApp";
-});
+
+
+app.MapFallbackToFile("index.html");
+
+
+//app.UseSpa(spa =>
+//{
+//    spa.Options.SourcePath = "ClientApp";
+//});
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DatabaseMigrator>();
