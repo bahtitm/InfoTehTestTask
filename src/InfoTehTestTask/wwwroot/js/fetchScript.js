@@ -29,6 +29,9 @@ function submitFormPost(urn,formId) {
     .catch((error) => {
         console.error('Error:', error);
     });
+   
+    document.location.href="/";
+    
 }
 function RemoveEntity(urn,Id) {
     
@@ -45,8 +48,11 @@ function RemoveEntity(urn,Id) {
     .then(response => response.json()) // Assuming the server responds with JSON
     .then(data => {
         console.log('Success:', data);
+        
     })
     .catch((error) => {
         console.error('Error:', error);
     });
+   
+    document.location.href="/";
 }
