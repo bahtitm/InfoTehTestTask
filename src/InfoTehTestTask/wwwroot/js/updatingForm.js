@@ -1,0 +1,40 @@
+function SetListenerOnForm(){
+    function handleFormChange(event) {        
+        event.preventDefault();  
+        
+        if (event.currentTarget instanceof HTMLFormElement) {
+            let selectedTreeNode=document.getElementsByClassName("selected");
+            
+           
+            const formData = new FormData(event.currentTarget);
+            const dataObject = {};
+            formData.forEach((value, key) => {
+                dataObject[key] = value;
+            }); 
+            if(selectedTreeNode)
+            {
+                if(selectedTreeNode[0].getAttribute("isFile")=='false')
+                {
+
+                    this.elements.parentId.value=selectedTreeNode[0].getAttribute("id")
+                }
+                
+                
+
+            }  
+            
+            //console.log('Form data:', dataObject);
+        } else {
+            console.error('Event target is not a form element.');
+        }
+    }   
+    const form = document.getElementById('CreateFolder');    
+    if (form) {
+       
+        form.addEventListener('change', handleFormChange);
+    } else {
+        console.error('Form element not found.');
+    }
+}
+
+

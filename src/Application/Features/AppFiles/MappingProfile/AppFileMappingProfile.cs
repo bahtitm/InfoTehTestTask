@@ -9,7 +9,7 @@ namespace Application.Features.AppFiles.MappingProfile
         public AppFileMappingProfile()
         {
             CreateMap<CreateAppFileCommand, AppFile>();
-            CreateMap<UpdateAppileCommand, AppFile>();
+            CreateMap<UpdateAppFileCommand, AppFile>();
             CreateMap<AppFile, AppFileDto>();
         }
     }

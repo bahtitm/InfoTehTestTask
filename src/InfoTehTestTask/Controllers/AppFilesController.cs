@@ -33,7 +33,7 @@ namespace InfoTehTestTask.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(uint id, [FromBody] UpdateAppileCommand command)
+        public async Task<IActionResult> Put(uint id, [FromBody] UpdateAppFileCommand command)
         {
             if (id != command.Id)
             {

@@ -36,3 +36,14 @@ main {
     padding: 20px;
     /* text-align: center; */
 }
+form {
+    display: flex;
+    flex-direction: column;
+}
+.buttons{
+    display: flex;
+    background-color: gainsboro;
+    justify-content:space-between;
+    width: 50%;
+    
+}

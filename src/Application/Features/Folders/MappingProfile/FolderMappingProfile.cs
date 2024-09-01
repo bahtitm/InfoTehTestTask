@@ -11,6 +11,9 @@ namespace Application.Features.Folders.MappingProfile
             CreateMap<CreateFolderCommand, Folder>();
             CreateMap<UpdateFolderCommand, Folder>();
             CreateMap<Folder, FolderDto>();
+            CreateMap<Folder, TreeDto>()
+                .ForMember(dest => dest.Files, opt => opt.MapFrom(src => src.FolderFiles));
+            ;
         }
     }
 }

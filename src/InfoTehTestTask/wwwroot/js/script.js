@@ -15,10 +15,10 @@ function loadContent() {
 
 // Fetch content from a specific page file
 function fetchContent(page) {
-    fetch(`${page}.html`)
+    fetch(`Pages/${page}.html`)
         .then(response => response.text())
         .then(data => {
-            document.getElementById('content').innerHTML = data;
+            document.getElementById('content').innerHTML = data;                    
         })
         .catch(error => {
             console.error('Error loading content:', error);

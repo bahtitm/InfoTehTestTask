@@ -1,17 +1,9 @@
 var data=[];
-//  [
-//     { id: 1, name: "Root Node", parentId: 0 },
-//     { id: 2, name: "Child Node 1",  parentId: 1 },
-//     { id: 3, name: "Child Node 2", parentId: 1 },
-//     { id: 4, name: "Sub-child Node 1", parentId: 2 },
-//     { id: 5, name: "Sub-child Node 2", parentId: 2 },
-//     { id: 6, name: "Sub-child Node 2", parentId: 5 },
-//     { id: 7, name: "Sub-child Node 2", parentId: 5 }
-// ];
-var url="https://localhost:7083/api/Folders"
-console.log(data);
+
+var url="https://localhost:7083/api/Folders/WithFile"
+
 httpGetAsync(url,caltr);
-console.log(data);
+
 const container = document.getElementById('tree-container');
 const treeData = buildTree(data);
 container.appendChild(createTreeElement(treeData));
@@ -52,15 +44,19 @@ function createTreeElement(nodes) {
         const icon = document.createElement('span');
         icon.classList.add('icon');
         
-        const textSpan = document.createElement('span');
-        
+        const textSpan = document.createElement('span');       
+        textSpan.setAttribute("parentId",node.parentId);
+        textSpan.setAttribute("id",node.id);
+        textSpan.setAttribute("isFile",node.isFile);
+        textSpan.setAttribute("fileId",node.fileId)
         textSpan.textContent = node.name;
 
         textSpan.addEventListener('click', function(e) {
             e.stopPropagation();
             document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
             this.classList.add('selected');
-            console.log('Selected node:', this.textContent);
+           
+            console.log('Selected node:', e);        
         });
 
         li.appendChild(icon);

@@ -3,6 +3,7 @@ using Application.Features.Folders.Commands.DeleteFolder;
 using Application.Features.Folders.Commands.UpdateFolder;
 using Application.Features.Folders.Queries.GetAll;
 using Application.Features.Folders.Queries.GetDetail;
+using Application.Features.Folders.Queries.GetFolderFileTree;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfoTehTestTask.Controllers
@@ -18,7 +19,12 @@ namespace InfoTehTestTask.Controllers
             var dataSource = await mediator.Send(new GetAllFolderQuery());
             return Ok(dataSource.AsQueryable());
         }
-
+        [HttpGet("WithFile")]
+        public async Task<IActionResult> GetWithFile()
+        {
+            var dataSource = await mediator.Send(new GetFolderFileTreeQuery());
+            return Ok(dataSource.AsQueryable());
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(uint id)
         {

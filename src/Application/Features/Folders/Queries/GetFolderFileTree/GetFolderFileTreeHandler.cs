@@ -14,7 +14,24 @@ namespace Application.Features.Folders.Queries.GetFolderFileTree
 
         public async Task<IEnumerable<TreeDto>> Handle(GetFolderFileTreeQuery request, CancellationToken cancellationToken)
         {
-           var t= dbContext.Set<Folder>().ProjectTo<TreeDto>(mapper.ConfigurationProvider);
+           var t= dbContext.Set<Folder>().ProjectTo<TreeDto>(mapper.ConfigurationProvider).ToList();
+
+
+            var folderDto = new List<TreeDto>();
+            foreach (var item in t)
+            {
+
+                if (item.Files.Count() > 0)
+                {
+                    foreach (var file in item.Files)
+                    {
+
+                        folderDto.Add(new TreeDto() { FileId=file.Id, Name = file.Name, ParentId = item.Id, IsFile = true });
+
+                    }
+                }
+            }
+            t.AddRange(folderDto);
             return await Task.FromResult(t);
         }
 
