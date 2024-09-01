@@ -1,6 +1,7 @@
 ﻿using Application.Features.AppFiles.Commands.CreateFolderFile;
 using Application.Features.AppFiles.Commands.DeleteAppFile;
 using Application.Features.AppFiles.Commands.UpdateAppFile;
+using Application.Features.AppFiles.Commands.UpdateName;
 using Application.Features.AppFiles.Queries.GetAll;
 using Application.Features.AppFiles.Queries.GetDetail;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,16 @@ namespace InfoTehTestTask.Controllers
             await mediator.Send(command);
             return NoContent();
         }
+
+
+        [HttpPut("UpdateName")]
+        public async Task<IActionResult> Put([FromBody] UpdateAppFileNameCommand command)
+        {
+           
+            await mediator.Send(command);
+            return NoContent();
+        }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(uint id, [FromBody] UpdateAppFileCommand command)

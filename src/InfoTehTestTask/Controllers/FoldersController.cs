@@ -1,6 +1,8 @@
-﻿using Application.Features.Folders.Commands.CreateFolder;
+﻿using Application.Features.AppFiles.Commands.UpdateName;
+using Application.Features.Folders.Commands.CreateFolder;
 using Application.Features.Folders.Commands.DeleteFolder;
 using Application.Features.Folders.Commands.UpdateFolder;
+using Application.Features.Folders.Commands.UpdateFolderName;
 using Application.Features.Folders.Queries.GetAll;
 using Application.Features.Folders.Queries.GetDetail;
 using Application.Features.Folders.Queries.GetFolderFileTree;
@@ -34,6 +36,16 @@ namespace InfoTehTestTask.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateFolderCommand command)
         {
+            await mediator.Send(command);
+            return NoContent();
+        }
+
+
+
+        [HttpPut("UpdateName")]
+        public async Task<IActionResult> Put([FromBody] UpdateFolderNameCommand command)
+        {
+
             await mediator.Send(command);
             return NoContent();
         }

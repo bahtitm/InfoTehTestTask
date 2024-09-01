@@ -16,12 +16,12 @@ function buildTree(data) {
     const nodeMap = new Map();
     const rootNodes = [];
 
-    // Create a map of all nodes
+    
     data.forEach(node => {
         nodeMap.set(node.id, { ...node, children: [] });
     });
 
-    // Populate children
+    
     data.forEach(node => {
         const currentNode = nodeMap.get(node.id);
         if (node.parentId === 0) {
@@ -91,7 +91,7 @@ function createTreeElement(nodes) {
           if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
               callback(xmlHttp.responseText);
       }
-      xmlHttp.open("GET", theUrl, false); // true for asynchronous 
+      xmlHttp.open("GET", theUrl, false); 
       xmlHttp.send(null);
   }
   function caltr(data1){  

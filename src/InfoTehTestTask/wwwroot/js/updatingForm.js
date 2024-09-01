@@ -27,7 +27,7 @@ function SetListenerOnForm(){
 
             }  
             
-            //console.log('Form data:', dataObject);
+            
         } else {
             console.error('Event target is not a form element.');
         }

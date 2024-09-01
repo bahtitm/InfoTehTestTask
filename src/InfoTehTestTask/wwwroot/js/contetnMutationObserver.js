@@ -4,10 +4,10 @@ let observer = new MutationObserver((mutations) => {
           SetListenerOnForm();
 
           for(let node of mutation.addedNodes) {
-             // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+             
              if (!(node instanceof HTMLElement)) continue;
       
-             // проверить, не является ли вставленный элемент примером кода
+             
              if (node.matches('form#CreateFile')) {
                 FileExtensionsGetter();
              }
@@ -20,7 +20,7 @@ let observer = new MutationObserver((mutations) => {
       } else if (mutation.type === "characterData") {
         console.log("Text content was changed.");
       }
-      // проверим новые узлы, есть ли что-то, что надо подсветить?
+     
 
       
     }
