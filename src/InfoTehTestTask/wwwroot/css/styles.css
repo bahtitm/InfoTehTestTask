@@ -47,3 +47,5 @@ form {
     width: 50%;
     
 }
+input:invalid {border-color: red; }
+    input:valid { border-color: green;}

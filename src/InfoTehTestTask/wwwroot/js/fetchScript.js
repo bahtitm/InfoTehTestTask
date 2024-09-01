@@ -3,13 +3,15 @@ function submitFormPost(urn,formId) {
     const form = document.getElementById(formId);
     
     // Create a FormData object from the form
-    const formData = new FormData(form);
     
+    
+    const formData = new FormData(form);
     // Convert FormData to a plain object
     const data = Object.fromEntries(formData.entries());
     
     // Convert the data object to a JSON string
     const jsonData = JSON.stringify(data);
+    console.log(jsonData);
     //const host= window.location;
     const host="https://localhost:7083"// window.location;
     // Send the POST request using fetch

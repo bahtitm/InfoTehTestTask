@@ -16,7 +16,11 @@ function SetListenerOnForm(){
                 if(selectedTreeNode[0].getAttribute("isFile")=='false')
                 {
 
-                    this.elements.parentId.value=selectedTreeNode[0].getAttribute("id")
+                   if( this.elements.parentId)this.elements.parentId.value=selectedTreeNode[0].getAttribute("id");
+                   if( this.elements.folderId.value)this.elements.folderId.value=selectedTreeNode[0].getAttribute("id");
+                   
+                    
+
                 }
                 
                 
@@ -28,10 +32,17 @@ function SetListenerOnForm(){
             console.error('Event target is not a form element.');
         }
     }   
-    const form = document.getElementById('CreateFolder');    
-    if (form) {
+    const folderForm = document.getElementById('CreateFolder');    
+    if (folderForm) {
        
-        form.addEventListener('change', handleFormChange);
+        folderForm.addEventListener('change', handleFormChange);
+    } else {
+        console.error('Form element not found.');
+    }
+    const fileForm = document.getElementById('CreateFile');    
+    if (fileForm) {
+       
+        fileForm.addEventListener('change', handleFormChange);
     } else {
         console.error('Form element not found.');
     }

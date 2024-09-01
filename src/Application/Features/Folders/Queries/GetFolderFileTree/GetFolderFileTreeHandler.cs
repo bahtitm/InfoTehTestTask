@@ -16,7 +16,7 @@ namespace Application.Features.Folders.Queries.GetFolderFileTree
         {
            var t= dbContext.Set<Folder>().ProjectTo<TreeDto>(mapper.ConfigurationProvider).ToList();
 
-
+            var maxId=t.Max(p => p.Id);
             var folderDto = new List<TreeDto>();
             foreach (var item in t)
             {
@@ -25,8 +25,8 @@ namespace Application.Features.Folders.Queries.GetFolderFileTree
                 {
                     foreach (var file in item.Files)
                     {
-
-                        folderDto.Add(new TreeDto() { FileId=file.Id, Name = file.Name, ParentId = item.Id, IsFile = true });
+                        maxId++;
+                        folderDto.Add(new TreeDto() { Id=maxId, FileId=file.Id, Name = file.Name, ParentId = item.Id, IsFile = true });
 
                     }
                 }
