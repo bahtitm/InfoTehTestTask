@@ -8,7 +8,10 @@ namespace Application.Features.AppFiles.MappingProfile
     {
         public AppFileMappingProfile()
         {
-            CreateMap<CreateAppFileCommand, AppFile>();
+            CreateMap<CreateAppFileCommand, AppFile>()
+
+                .ForMember(ds=>ds.File, op=>op.Ignore())
+                ;
             CreateMap<UpdateAppFileCommand, AppFile>();
             CreateMap<AppFile, AppFileDto>();
         }

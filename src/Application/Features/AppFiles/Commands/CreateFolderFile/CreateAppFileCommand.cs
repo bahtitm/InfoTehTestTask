@@ -1,4 +1,5 @@
 ﻿using Application.Features.AppFiles.Dtos;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Features.AppFiles.Commands.CreateFolderFile
 {
@@ -10,6 +11,8 @@ namespace Application.Features.AppFiles.Commands.CreateFolderFile
         public uint FolderId { get; set; }
        
         public uint FileExtensionId { get; set; }
-       
+
+        public IFormFile File { get; set; }
+
     }
 }

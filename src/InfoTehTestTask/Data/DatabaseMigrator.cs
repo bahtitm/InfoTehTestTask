@@ -22,9 +22,10 @@ namespace InfoTehTestTask.Data
             {
                 var subscriptions = new List<FileExtension>()
                {
-                new FileExtension { Id=1,  Icon="1", Type="pdf"    },
-                new FileExtension { Id=2,Icon="2", Type="xsls"  },
-                new FileExtension { Id=3, Icon="3", Type="doc"   },
+                new FileExtension { Id=1,Icon=IconSvg.pdf.Trim(), Type="pdf"    },
+                new FileExtension { Id=2,Icon=IconSvg.xlsx.Trim(), Type="xlsx"  },
+                new FileExtension { Id=3,Icon=IconSvg.doc.Trim(), Type="doc"   },
+                new FileExtension { Id=4,Icon=IconSvg.txt.Trim(), Type="txt"   },
 
                     };
 

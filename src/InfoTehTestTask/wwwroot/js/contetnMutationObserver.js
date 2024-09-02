@@ -16,7 +16,7 @@ let observer = new MutationObserver((mutations) => {
           
         
           
-        console.log("A child node has been added or removed.");
+       
       } else if (mutation.type === "characterData") {
         console.log("Text content was changed.");
       }

@@ -9,6 +9,7 @@
         public virtual Folder? Folder { get; set; }
         public uint FileExtensionId { get; set; }
         public virtual FileExtension? FileExtension { get; set; }
+        public byte[] File { get; set; }
 
     }
 }

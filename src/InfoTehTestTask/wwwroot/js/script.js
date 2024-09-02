@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function loadContent() {
     const hash = location.hash || '#home'; 
-    fetchContent(hash.substring(1)); 
+    var parts = hash.split('?');
+   
+    fetchContent(parts[0].substring(1)); 
+   
 }
 
 

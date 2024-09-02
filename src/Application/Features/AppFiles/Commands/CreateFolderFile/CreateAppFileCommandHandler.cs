@@ -15,6 +15,11 @@ namespace Application.Features.AppFiles.Commands.CreateFolderFile
         public async Task<AppFileDto> Handle(CreateAppFileCommand request, CancellationToken cancellationToken)
         {
             var folderFile = mapper.Map<AppFile>(request);
+            using (var memoryStream = new MemoryStream())
+            {
+                request.File.OpenReadStream().CopyTo(memoryStream);
+                folderFile.File= memoryStream.ToArray();
+            }
             await dbContext.AddAsync(folderFile);
             await dbContext.SaveChangesAsync();
             return mapper.Map<AppFileDto>(folderFile);

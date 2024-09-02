@@ -2,6 +2,7 @@
 using Application.Features.AppFiles.Commands.DeleteAppFile;
 using Application.Features.AppFiles.Commands.UpdateAppFile;
 using Application.Features.AppFiles.Commands.UpdateName;
+using Application.Features.AppFiles.Queries.DownloadFile;
 using Application.Features.AppFiles.Queries.GetAll;
 using Application.Features.AppFiles.Queries.GetDetail;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,15 @@ namespace InfoTehTestTask.Controllers
             return Ok(dataSource.AsQueryable());
         }
 
+
+        [HttpGet("Download/{id}")]
+        public async Task<IActionResult> Download(uint id)
+        {
+            var result = await mediator.Send(new DownloadFileCommand(id));
+            Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
+            return File(result.bytes, "application/*", result.documentName);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(uint id)
         {
@@ -27,7 +37,7 @@ namespace InfoTehTestTask.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateAppFileCommand command)
+        public async Task<IActionResult> Post([FromForm] CreateAppFileCommand command)
         {
             await mediator.Send(command);
             return NoContent();

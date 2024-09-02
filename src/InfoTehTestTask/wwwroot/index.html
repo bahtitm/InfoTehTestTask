@@ -26,7 +26,7 @@
         </button>
       </div>
       <div class="menyu_button">
-        <button>Скачать файл</button>
+        <button onclick="DownLoadFile()">Скачать файл</button>
       </div>
       <div class="menyu_button">
         <button onclick="clikcRemoveEntity()">Удалить файл</button>
@@ -57,6 +57,22 @@
     </main>
 
     <script>
+     function DownLoadFile() 
+     {
+        let selectedTreeNode = document.getElementsByClassName("selected");
+        if (selectedTreeNode) {
+          let id = selectedTreeNode[0].getAttribute("id");
+          let fileId = selectedTreeNode[0].getAttribute("fileId");
+          let isFile = selectedTreeNode[0].getAttribute("isFile");
+          let name = selectedTreeNode[0].textContent;
+          if(isFile ==='true')
+                {
+
+                    downloadFileFech("/api/AppFiles/Download",fileId);
+                }
+        }
+
+     }
       function updateName() {
      
         let selectedTreeNode = document.getElementsByClassName("selected");
@@ -67,16 +83,13 @@
           let name = selectedTreeNode[0].textContent;
           
           
-          console.log(isFile);
+        
           
           let confirmText = isFile ==='true' ? `"Do you want change file name: '${name}'' "`:`"Do you want change folder name: '${name}'"`
-          
-          var confirmAction = confirm(
-            confirmText
-          );
+          var confirmAction = confirm(confirmText);
 
           if (confirmAction) {
-            // If confirmed, ask for input
+            
             var userInput = prompt("Please enter your value:");
             if (userInput !== null) {
 
@@ -91,13 +104,13 @@
 
 
 
-              console.log("User input:", userInput);
+            
 
             } else {
-              console.log("User canceled the prompt.");
+              
             }
           } else {
-            console.log("User canceled the action.");
+            
           }
         }
       }
