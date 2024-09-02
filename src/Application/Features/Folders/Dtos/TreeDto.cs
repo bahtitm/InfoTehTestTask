@@ -12,6 +12,7 @@ namespace Application.Features.Folders.Dtos
         public uint FileId { get; set; }
 
         public uint ExtensionId { get; set; }
+        public string? FileDescription { get; set; } = string.Empty;
 
         public virtual IEnumerable<AppFileDto>? Files { get; set; }
         

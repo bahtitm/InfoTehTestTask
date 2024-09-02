@@ -26,7 +26,7 @@ namespace Application.Features.Folders.Queries.GetFolderFileTree
                     foreach (var file in item.Files)
                     {
                         maxId++;                        
-                        folderDto.Add(new TreeDto() { Id = maxId, FileId = file.Id, Name = file.Name, ParentId = item.Id, IsFile = true, ExtensionId = file.FileExtensionId });
+                        folderDto.Add(new TreeDto() { Id = maxId, FileId = file.Id, Name = file.Name, ParentId = item.Id, IsFile = true, ExtensionId = file.FileExtensionId, FileDescription=file.Discribtion });
 
                     }
                 }

@@ -36,8 +36,9 @@ function createTreeElement(nodes) {
   nodes.forEach((node) => {
     const li = document.createElement("li");
     const icon = document.createElement("span");
-
+   
     const spanElement = setNodeIcon(node);
+    spanElement.classList.add("tooltip-container")
 
     icon.classList.add("icon");
 
@@ -62,10 +63,24 @@ function createTreeElement(nodes) {
       } else {
         window.location.href = `#home`;
       }
-    });
+    }); 
+
+
+
+if(node.isFile)
+{
+  const tooltipSpan = document.createElement("span");
+  tooltipSpan.textContent=node.fileDescription;
+  tooltipSpan.classList.add("tooltip")
+  spanElement.appendChild(tooltipSpan);
+
+  
+}
+
 
     li.appendChild(icon);
     li.appendChild(spanElement);
+    
     li.appendChild(textSpan);
 
     if (node.children.length > 0) {
