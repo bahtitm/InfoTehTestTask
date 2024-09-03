@@ -1,17 +1,17 @@
-/* Basic Reset */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Container styles */
+
 .container {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar styles */
+
 .sidebar {
     width: 250px;
     background-color: #f8f9fa;
@@ -33,17 +33,17 @@
     font-weight: bold;
 }
 
-/* Content styles */
+
 .content {
     flex: 1;
     padding: 2rem;
     background-color: #ffffff;
 }
 
-/* Responsive styles */
+
 @media (max-width: 768px) {
     .sidebar {
-        display: none; /* Hide the sidebar on smaller screens */
+        display: none; 
     }
 
     .content {

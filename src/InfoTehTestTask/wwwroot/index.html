@@ -58,60 +58,47 @@
     </main>
 
     <script>
-     function DownLoadFile() 
-     {
+      function DownLoadFile() {
         let selectedTreeNode = document.getElementsByClassName("selected");
         if (selectedTreeNode) {
           let id = selectedTreeNode[0].getAttribute("id");
           let fileId = selectedTreeNode[0].getAttribute("fileId");
           let isFile = selectedTreeNode[0].getAttribute("isFile");
           let name = selectedTreeNode[0].textContent;
-          if(isFile ==='true')
-                {
-
-                    downloadFileFech("/api/AppFiles/Download",fileId);
-                }
+          if (isFile === "true") {
+            downloadFileFech("/api/AppFiles/Download", fileId);
+          }
         }
-
-     }
+      }
       function updateName() {
-     
         let selectedTreeNode = document.getElementsByClassName("selected");
         if (selectedTreeNode) {
           let id = selectedTreeNode[0].getAttribute("id");
           let fileId = selectedTreeNode[0].getAttribute("fileId");
           let isFile = selectedTreeNode[0].getAttribute("isFile");
           let name = selectedTreeNode[0].textContent;
-          
-          
-        
-          
-          let confirmText = isFile ==='true' ? `"Do you want change file name: '${name}'' "`:`"Do you want change folder name: '${name}'"`
+
+          let confirmText =
+            isFile === "true"
+              ? `"Do you want change file name: '${name}'' "`
+              : `"Do you want change folder name: '${name}'"`;
           var confirmAction = confirm(confirmText);
 
           if (confirmAction) {
-            
             var userInput = prompt("Please enter your value:");
             if (userInput !== null) {
-
-                if(isFile ==='true')
-                {
-
-                    updateNameRequest("/api/AppFiles/UpdateName",userInput,fileId);
-                }else
-                {
-                    updateNameRequest("/api/Folders/UpdateName",userInput,id);
-                }
-
-
-
-            
-
+              if (isFile === "true") {
+                updateNameRequest(
+                  "/api/AppFiles/UpdateName",
+                  userInput,
+                  fileId
+                );
+              } else {
+                updateNameRequest("/api/Folders/UpdateName", userInput, id);
+              }
             } else {
-              
             }
           } else {
-            
           }
         }
       }
@@ -140,5 +127,6 @@
     <script src="js/updatingForm.js"></script>
     <script src="js/fileExtentionSelectBox.js"></script>
     <script src="js/contetnMutationObserver.js"></script>
+    <script src="js/loadFile.js"></script>
   </body>
 </html>

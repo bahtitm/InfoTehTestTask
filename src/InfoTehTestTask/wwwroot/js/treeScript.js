@@ -36,9 +36,9 @@ function createTreeElement(nodes) {
   nodes.forEach((node) => {
     const li = document.createElement("li");
     const icon = document.createElement("span");
-   
+
     const spanElement = setNodeIcon(node);
-    spanElement.classList.add("tooltip-container")
+    spanElement.classList.add("tooltip-container");
 
     icon.classList.add("icon");
 
@@ -48,7 +48,6 @@ function createTreeElement(nodes) {
     textSpan.setAttribute("isFile", node.isFile);
     textSpan.setAttribute("fileId", node.fileId);
     textSpan.textContent = node.name;
-    
 
     textSpan.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -59,28 +58,22 @@ function createTreeElement(nodes) {
 
       let isFile = this.getAttribute("isFile");
       if (isFile === "true") {
-        window.location.href = `#fileCard?id=${1}`;
+        window.location.href = `#fileCard?id=${node.fileId}`;
       } else {
         window.location.href = `#home`;
       }
-    }); 
+    });
 
-
-
-if(node.isFile)
-{
-  const tooltipSpan = document.createElement("span");
-  tooltipSpan.textContent=node.fileDescription;
-  tooltipSpan.classList.add("tooltip")
-  spanElement.appendChild(tooltipSpan);
-
-  
-}
-
+    if (node.isFile) {
+      const tooltipSpan = document.createElement("span");
+      tooltipSpan.textContent = node.fileDescription;
+      tooltipSpan.classList.add("tooltip");
+      spanElement.appendChild(tooltipSpan);
+    }
 
     li.appendChild(icon);
     li.appendChild(spanElement);
-    
+
     li.appendChild(textSpan);
 
     if (node.children.length > 0) {
@@ -106,13 +99,11 @@ function setNodeIcon(node) {
   const spanElement = document.createElement("span");
   const imgElement = document.createElement("img");
   let isFile = node.isFile;
-  let extensionId=node.extensionId
-  console.log(node);
+  let extensionId = node.extensionId;
+
   if (isFile === true) {
-    getFileExtenstion("/api/FileExtensions", extensionId,imgElement)
+    getFileExtenstion("/api/FileExtensions", extensionId, imgElement);
     imgElement.alt = "Description of Image";
-
-
   } else {
     imgElement.src = "asserts/folder.svg";
     imgElement.alt = "Description of Image";
@@ -135,36 +126,22 @@ function caltr(data1) {
   this.data = JSON.parse(data1);
 }
 
-function getFileExtenstion(urn, id,element)
-{
-    const host = "https://localhost:7083";
-    fetch(`${host}${urn}/${id}`)
-    .then(response => {
-        
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        
-        return response.json();
+function getFileExtenstion(urn, id, element) {
+  const host = "https://localhost:7083";
+  fetch(`${host}${urn}/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      return response.json();
     })
-    .then(item => {
-        
-         const svgEncoded = encodeURIComponent(item.icon.trim());
+    .then((item) => {
+      const svgEncoded = encodeURIComponent(item.icon.trim());
 
-        
-        
-        element.src = `data:image/svg+xml;charset=utf-8,${svgEncoded}`;
-
-
-
-
-       
+      element.src = `data:image/svg+xml;charset=utf-8,${svgEncoded}`;
     })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
     });
-
-
-
-
 }
