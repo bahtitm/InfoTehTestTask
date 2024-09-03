@@ -1,5 +1,5 @@
 function loadFileContent(urn) {
-  const host = "https://localhost:7083";
+  //const host = "https://localhost:7083/";
 
   var queryString = window.location.hash;
 

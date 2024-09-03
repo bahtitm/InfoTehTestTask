@@ -10,7 +10,7 @@ let observer = new MutationObserver((mutations) => {
           FileExtensionsGetter();
         }
         if (node.matches("div#FileCard")) {
-          loadFileContent("/api/AppFiles/Download");
+          loadFileContent("api/AppFiles/Download");
         }
       }
     } else if (mutation.type === "characterData") {

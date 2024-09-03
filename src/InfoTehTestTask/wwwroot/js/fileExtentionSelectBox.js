@@ -1,6 +1,8 @@
 function FileExtensionsGetter() {
-  const apiUrl = "https://localhost:7083/api/FileExtensions";
-
+  //const host=window.location.href;
+// const host = "https://localhost:7083/";
+const apiUrl = `${host}api/FileExtensions`;  
+  
   async function populateSelectBox() {
     try {
       const response = await fetch(apiUrl);

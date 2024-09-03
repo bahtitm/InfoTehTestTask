@@ -1,7 +1,7 @@
 var data = [];
-
-var url = "https://localhost:7083/api/Folders/WithFile";
-
+// //const host=window.location.href;
+// const host = "https://localhost:7083/";
+var url = `${host}api/Folders/WithFile`;
 httpGetAsync(url, caltr);
 
 const container = document.getElementById("tree-container");
@@ -102,7 +102,7 @@ function setNodeIcon(node) {
   let extensionId = node.extensionId;
 
   if (isFile === true) {
-    getFileExtenstion("/api/FileExtensions", extensionId, imgElement);
+    getFileExtenstion("api/FileExtensions", extensionId, imgElement);
     imgElement.alt = "Description of Image";
   } else {
     imgElement.src = "asserts/folder.svg";
@@ -127,7 +127,7 @@ function caltr(data1) {
 }
 
 function getFileExtenstion(urn, id, element) {
-  const host = "https://localhost:7083";
+  // const host = "https://localhost:7083";
   fetch(`${host}${urn}/${id}`)
     .then((response) => {
       if (!response.ok) {

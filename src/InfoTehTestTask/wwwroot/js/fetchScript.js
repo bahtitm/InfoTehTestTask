@@ -1,5 +1,7 @@
+
+// const host = "https://localhost:7083/";
 function submitFormPost(urn, formId) {
-  const host = "https://localhost:7083"; // window.location;
+//debugger
   const form = document.getElementById(formId);
   const formData = new FormData(form);
   const hasFile = Array.from(formData.values()).some(
@@ -38,10 +40,10 @@ function submitFormPost(urn, formId) {
         console.error("Error:", error);
       });
   }
-  document.location.href = "/";
+  //document.location.href = "/";
 }
 function RemoveEntity(urn, Id) {
-  const host = "https://localhost:7083"; // window.location;
+  //const host = "https://localhost:7083"; // window.location;
 
   fetch(`${host}${urn}/${Id}`, {
     method: "DELETE",
@@ -64,7 +66,7 @@ function updateNameRequest(urn, name, id) {
 
   const jsonData = JSON.stringify(data);
 
-  const host = "https://localhost:7083"; // window.location;
+  //const host = "https://localhost:7083"; 
 
   fetch(`${host}${urn}`, {
     method: "PUT",
@@ -85,7 +87,7 @@ function updateNameRequest(urn, name, id) {
 }
 
 function downloadFileFech(urn, id) {
-  const host = "https://localhost:7083";
+ // const host = "https://localhost:7083";
   fetch(`${host}${urn}/${id}`)
     .then((response) => {
       if (!response.ok) {
